@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .rounded-input {
+            border-radius: 30px;
+        }
+        .rounded-button {
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Translate XMIND</h1>
+
+        <form action="/process_file" method="post" enctype="multipart/form-data" class="mt-5">
+            <div class="form-group">
+                <label for="language">Choose .XMIND File</label>
+                <input type="file" id="fileInput" name="file" class="form-control-file" onchange="checkFile()" accept=".xmind">
+            </div>
+            <div class="form-group">
+                <label for="language">Enter DeepL API Key</label>
+                <input type="text" id="apiKeyInput" name="API_KEY" placeholder="Enter DeepL API Key" class="form-control rounded-input" oninput="checkFile()">
+            </div>
+            <div class="form-group">
+                <label for="language">Choose target language:</label>
+                <select name="language" class="form-control rounded-input">
+                    <option value="AR">Arabic</option>
+                    <option value="BG">Bulgarian</option>
+                    <option value="CS">Czech</option>
+                    <option value="DA">Danish</option>
+                    <option value="DE">German</option>
+                    <option value="EL">Greek</option>
+                    <option value="EN">English (unspecified variant)</option>
+                    <option value="EN-GB">English (British)</option>
+                    <option value="EN-US">English (American)</option>
+                    <option value="ES">Spanish</option>
+                    <option value="ET">Estonian</option>
+                    <option value="FI">Finnish</option>
+                    <option value="FR">French</option>
+                    <option value="HU">Hungarian</option>
+                    <option value="ID">Indonesian</option>
+                    <option value="IT">Italian</option>
+                    <option value="JA">Japanese</option>
+                    <option value="KO">Korean</option>
+                    <option value="LT">Lithuanian</option>
+                    <option value="LV">Latvian</option>
+                    <option value="NB">Norwegian Bokmål</option>
+                    <option value="NL">Dutch</option>
+                    <option value="PL">Polish</option>
+                    <option value="PT">Portuguese (unspecified variant)</option>
+                    <option value="PT-BR">Portuguese (Brazilian)</option>
+                    <option value="PT-PT">Portuguese (all Portuguese varieties excluding Brazilian Portuguese)</option>
+                    <option value="RO">Romanian</option>
+                    <option value="RU">Russian</option>
+                    <option value="SK">Slovak</option>
+                    <option value="SL">Slovenian</option>
+                    <option value="SV">Swedish</option>
+                    <option value="TR">Turkish</option>
+                    <option value="UK">Ukrainian</option>
+                    <option value="ZH">Chinese (simplified)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-button" id="submitBtn" disabled>Translate and Download</button>
+        </form>
+    </div>
+
+    <script src="server.js"></script>
+    <script>
+        function checkFile() {
+            let fileInput = document.getElementById('fileInput');
+            let apiKeyInput = document.getElementById('apiKeyInput');
+            let submitBtn = document.getElementById('submitBtn');
+            
+            if (fileInput.value && apiKeyInput.value) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>
